@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhishProof – spot phishing before you click</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'">
+<link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="top">
+  <h1><span aria-hidden="true">🎣</span> PhishProof</h1>
+  <p class="tag">Paste a suspicious email or text and see the red flags, explained. <strong>It runs on your device, never opens links, and sends nothing anywhere.</strong></p>
+  <nav class="tabs" role="tablist" aria-label="Mode">
+    <button role="tab" id="tab-check" aria-selected="true" aria-controls="panel-check">Check a message</button>
+    <button role="tab" id="tab-practice" aria-selected="false" aria-controls="panel-practice" tabindex="-1">Practice</button>
+  </nav>
+</header>
+
+<main id="main">
+  <section id="panel-check" role="tabpanel" aria-labelledby="tab-check" class="panel">
+    <label for="msg">Paste the message (include the "From:" line if you can)</label>
+    <textarea id="msg" rows="12" spellcheck="false" aria-describedby="msg-help"></textarea>
+    <p id="msg-help" class="help">Tip: in Gmail use ⋮ → "Show original", or just copy the sender line and the text.</p>
+    <div class="row">
+      <button id="example" type="button" class="secondary">Load an example</button>
+      <button id="check" type="button">Check for red flags</button>
+    </div>
+
+    <div id="result" hidden>
+      <h2 id="result-h" tabindex="-1">Result</h2>
+      <div class="verdict" id="verdict">
+        <div class="meter" aria-hidden="true"><div id="meter-fill"></div></div>
+        <p><b id="verdict-text"></b> <span id="risk"></span></p>
+      </div>
+      <ol id="flags" class="flags"></ol>
+      <div class="advice">
+        <h3>What to do</h3>
+        <ul>
+          <li>Don't click links or open attachments in a message you aren't sure about.</li>
+          <li>Go to the company's website by typing its address yourself, or use its app.</li>
+          <li>If it claims to be someone you know, check with them another way (text, call, in person).</li>
+          <li>Report it: use "Report phishing" in your email app, or forward texts to <b>7726</b> (SPAM).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" class="panel" hidden>
+    <div class="row between">
+      <h2 id="q-title">Message <span id="q-num">1</span> of <span id="q-total">6</span></h2>
+      <p class="scoreline" aria-live="polite">Score: <b id="q-score">0</b></p>
+    </div>
+    <pre id="q-text" class="mail" tabindex="0" aria-label="Practice message"></pre>
+    <p class="q">Is this message phishing?</p>
+    <div class="row">
+      <button id="ans-phish" type="button" class="danger">🎣 Phishing</button>
+      <button id="ans-safe" type="button" class="ok">✅ Looks legit</button>
+    </div>
+    <div id="feedback" role="status" aria-live="polite"></div>
+    <div class="row"><button id="next" type="button" class="secondary" hidden>Next message →</button></div>
+  </section>
+
+  <section class="panel note" aria-labelledby="about-h">
+    <h2 id="about-h">How it works</h2>
+    <p>PhishProof checks for 19 warning signs that security teams teach: lookalike domains ("paypa1", "rnicrosoft"), links whose text hides a different destination, bare IP links, shortened links, punycode, mismatched sender names and reply-to addresses, urgent pressure, requests for passwords or gift cards, and disguised attachments like <code>.pdf.exe</code>.</p>
+    <p>No tool catches every scam. If something feels off, it probably is, so verify it another way.</p>
+  </section>
+</main>
+<footer class="foot">PhishProof · built for IceHacks 2026 · open source</footer>
+<script src="src/analyzer.js"></script>
+<script src="src/samples.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "phishproof",
+  "version": "1.0.0",
+  "description": "Spot phishing before you click: private, in-browser phishing red-flag checker and practice quiz",
+  "scripts": { "test": "node test/run.mjs" },
+  "devDependencies": { "playwright": "^1.48.0" },
+  "license": "MIT"
+}
